@@ -1,0 +1,39 @@
+// СТИЛИ КОММЕНТАРИЕВ К ПОСТАМ
+
+@import "variables";
+@import "main";
+@import "mixins";
+@import "header";
+@import "card";
+
+.card{
+    margin-bottom: 20px;
+}
+
+.card__button__active{
+    background-color: #fff !important;
+    outline: 1px solid #0010241F !important;
+}
+
+.comments{
+    margin-left: 99px;
+}
+
+.comment-card{
+    padding: 24px;
+    border-radius: 20px;
+    box-shadow: @box-shadow;
+    box-sizing: border-box;
+    margin-bottom: 24px;
+    .card__header-mixin();
+    .card__post{
+        .d_flex_ai-cntr();
+        padding-bottom: 0;
+        img{
+            margin-left: 20px;
+        }
+    }
+}
+.comment-form{
+    .form-base();
+}

@@ -1,0 +1,91 @@
+// СТИЛИ ШАПКИ
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background-color: @light_gray;
+  height: 64px;
+  display: flex;
+  justify-content: center;
+  & > .header__container { 
+    width: 100%;
+    max-width: 820px;
+    margin: 0 auto;
+    .d_flex_ai-cntr();
+    justify-content: space-between;
+    padding: 0 15px;
+    border-bottom: 2px solid @gray;
+  }
+}
+
+.header__base {
+  .d_flex_ai-cntr();
+  gap: 23px;
+}
+
+.header__search__form{
+  width: 60%;
+}
+
+.header__search {
+  height: 32px;
+  padding: 6px 10px;
+  border: none;
+  border-radius: 8px;
+  background-color: @gray;
+  color: black;
+  font-size: 13px;
+  font-weight: normal;
+  font-style: normal;
+  width: 320px;
+}
+.header__search:focus {
+  .input-focus();
+}
+
+.header__links {
+  .d_flex_ai-cntr();
+  gap: 16px;
+  a {
+    text-align: center;
+    color: @gray-text;
+    text-decoration: none;
+  }
+  .header_links__link {
+    .d_flex_ai-cntr();
+    gap: 8px;
+    font-size: 13px;
+    font-weight: normal;
+    font-style: normal;
+  }
+}
+
+
+@media (max-width: 768px) {
+  .header__search {
+    width: 100%;
+    max-width: none;
+    flex-grow: 1;
+    min-width: 0;
+  }
+
+  .header__base {
+    flex: 1;
+    .d_flex_ai-cntr();
+    gap: 12px;
+  }
+}
+
+@media (max-width: 576px) {
+  .header_links__link {
+    p {
+      display: none;
+    }
+  }
+  #reg {
+    display: none;
+  }
+}

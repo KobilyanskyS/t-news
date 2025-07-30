@@ -1,0 +1,51 @@
+// СТИЛИ КАРТОЧЕК С ПОСТАМИ
+
+@import "mixins";
+
+.cards{
+    margin-top: 65px;
+}
+
+.cards > *:not(:first-child) {
+  margin-top: 65px;
+}
+
+.card{
+    padding: 24px;
+    border-radius: 20px;
+    box-shadow: @box-shadow;
+    .card__header-mixin();
+    .card__name{
+        font-size: 24px;
+    }
+}
+
+.card__post{
+    padding-bottom: 24px;
+}
+
+.card__footer{
+    .d_flex_ai-cntr();
+    gap: 12px;
+    .card__button{
+        .d_flex_ai-cntr();
+        justify-content: center;
+        .button();
+        gap: 8px;
+        p{
+            margin: 0;
+            padding: 0;
+            height: 24px;
+            line-height: 24px;
+        }
+    }
+    .card__button__like{
+        background-color: @yellow;
+        color: black;
+    }
+}
+
+.card__name{
+    text-decoration: none;
+    color: black;
+}

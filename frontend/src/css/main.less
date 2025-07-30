@@ -1,0 +1,81 @@
+// ОСНОВНЫЕ СТИЛИ, ШРИФТЫ, КОНТЕЙНЕРЫ
+
+@font-face {
+    font-family: 'Tinkoff Sans';
+    src: url('/src/font/TinkoffSans-Bold.eot');
+    src: local('Tinkoff Sans Bold'), local('TinkoffSans-Bold'),
+        url('/src/font/TinkoffSans-Bold.eot?#iefix') format('embedded-opentype'),
+        url('/src/font/TinkoffSans-Bold.woff2') format('woff2'),
+        url('/src/font/TinkoffSans-Bold.woff') format('woff'),
+        url('/src/font/TinkoffSans-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Tinkoff Sans';
+    src: url('/src/font/TinkoffSans-Medium.eot');
+    src: local('Tinkoff Sans Medium'), local('TinkoffSans-Medium'),
+        url('/src/font/TinkoffSans-Medium.eot?#iefix') format('embedded-opentype'),
+        url('/src/font/TinkoffSans-Medium.woff2') format('woff2'),
+        url('/src/font/TinkoffSans-Medium.woff') format('woff'),
+        url('/src/font/TinkoffSans-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Tinkoff Sans';
+    src: url('/src/font/TinkoffSans-Regular.eot');
+    src: local('Tinkoff Sans Regular'), local('TinkoffSans-Regular'),
+        url('/src/font/TinkoffSans-Regular.eot?#iefix') format('embedded-opentype'),
+        url('/src/font/TinkoffSans-Regular.woff2') format('woff2'),
+        url('/src/font/TinkoffSans-Regular.woff') format('woff'),
+        url('/src/font/TinkoffSans-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+*{
+    font-family: 'Tinkoff Sans';
+}
+
+body {
+  padding-top: 64px;
+}
+.wrapper__fs {
+  background-color: @light_gray;
+}
+.wrapper {
+  max-width: 820px;
+  margin: 0 auto;
+}
+
+/* Планшеты (768px - 820px) */
+@media (max-width: 820px) {
+  .wrapper {
+    padding: 0 10px;
+  }
+}
+
+/* Планшеты (вертикальные, до 768px) */
+@media (max-width: 768px) {
+  .wrapper {
+    max-width: 100%;
+  }
+}
+
+/* Мобильные (до 576px) */
+@media (max-width: 576px) {
+  .wrapper {
+    padding: 0 8px;
+  }
+}
+
+/* Маленькие мобильные (до 480px) */
+@media (max-width: 480px) {
+  /* Дополнительные стили для маленьких экранов */
+}
