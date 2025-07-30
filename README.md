@@ -45,12 +45,12 @@ npm run dev
 Фронтенд будет доступен на `http://localhost:5173`
 
 ## 👤 Логины и пароли созданных пользователей
-alex_smith - password123
-maria_k - password123
-dmitry_dev - password123
-anna_art - password123
-sergey_tech - password123
-elena_fit - password123
+- alex_smith - password123
+- maria_k - password123
+- dmitry_dev - password123
+- anna_art - password123
+- sergey_tech - password123
+- elena_fit - password123
 
 ## 📁 Структура проекта
 
