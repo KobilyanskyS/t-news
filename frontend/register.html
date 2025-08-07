@@ -34,6 +34,7 @@
                         <input type="password" name="password" class="login-form__input" placeholder="Пароль">
                         <input type="password" name="password_repeat" class="login-form__input" placeholder="Повторите пароль">
                     </div>
+                    <div id="register-error" class="error-message"></div>
                     <div class="login-form__buttons">
                         <button class="login-form__button" onclick="window.location.href='/login.html'">Войти</button>
                         <input class="login-form__button login_form_button__log_btn" type="submit" value="Зарегистрироваться">
@@ -42,6 +43,6 @@
             </div>
         </div>
     </div>
-    <script src="register-script.js"></script>
+    <script type="module" src="/src/js/pages/register.js"></script>
 </body>
 </html>

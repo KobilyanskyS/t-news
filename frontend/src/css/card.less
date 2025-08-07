@@ -49,3 +49,26 @@
     text-decoration: none;
     color: black;
 }
+
+@media (max-width: 576px) {
+  .cards{
+    margin-top: 32px;
+}
+  .cards > *:not(:first-child) {
+    margin-top: 32px;
+  }
+  .card {
+    padding: 16px;
+  }
+  .card .card__name {
+    font-size: 22px;
+  }
+  .card .card__post {
+    font-size: 16px;
+    line-height: 22px;
+  }
+  .card .card__footer .card__button p {
+    height: 22px;
+    line-height: 22px;
+  }
+}

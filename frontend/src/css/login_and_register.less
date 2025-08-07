@@ -57,3 +57,54 @@ body{
         .button-yellow();
     }
 }
+
+@media (max-width: 576px) {
+  .wrapper__centered {
+    padding: 16px;
+    height: auto;
+    min-height: 100vh;
+  }
+  
+  .login-form {
+    width: 100%;
+    max-width: 414px;
+    padding: 20px;
+    margin: 20px 0;
+  }
+  
+  .login-form__title {
+    font-size: 20px;
+    margin-bottom: 16px;
+  }
+  
+  .login-form__inputs {
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+  
+  .login-form__input {
+    height: 48px;
+    font-size: 16px; /* Предотвращает зум на iOS */
+  }
+  
+  .login-form__buttons {
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .login-form__button {
+    width: 100%;
+    height: 48px;
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .login-form {
+    padding: 16px;
+  }
+  
+  .login-form__title {
+    font-size: 18px;
+  }
+}

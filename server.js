@@ -11,9 +11,20 @@ app.use(cors({
   credentials: true
 }));
 
-app.use(express.json());
+app.use(express.json({ limit: '15mb' }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+const USERS_PATH = path.join(__dirname, 'users.json');
+const POSTS_PATH = path.join(__dirname, 'posts.json');
+
+function readJson(file) {
+    if (!fs.existsSync(file)) return [];
+    return JSON.parse(fs.readFileSync(file, 'utf-8'));
+}
+function writeJson(file, data) {
+    fs.writeFileSync(file, JSON.stringify(data, null, 2));
+}
 
 // Эндпоинт для отдачи users.json (для фронта)
 app.get('/users.json', (req, res) => {
@@ -28,16 +39,18 @@ app.get('/users.json', (req, res) => {
     });
 });
 
-const USERS_PATH = path.join(__dirname, 'users.json');
-const POSTS_PATH = path.join(__dirname, 'posts.json');
-
-function readJson(file) {
-    if (!fs.existsSync(file)) return [];
-    return JSON.parse(fs.readFileSync(file, 'utf-8'));
-}
-function writeJson(file, data) {
-    fs.writeFileSync(file, JSON.stringify(data, null, 2));
-}
+// Эндпоинт для отдачи posts.json (публичный список постов)
+app.get('/posts.json', (req, res) => {
+    const postsPath = path.join(__dirname, 'posts.json');
+    fs.readFile(postsPath, 'utf-8', (err, data) => {
+        if (err) {
+            res.status(404).json({ error: 'posts.json not found' });
+        } else {
+            res.setHeader('Content-Type', 'application/json');
+            res.send(data);
+        }
+    });
+});
 
 // Регистрация
 app.post('/api/register', (req, res) => {
@@ -356,6 +369,46 @@ app.post('/api/subscribe', (req, res) => {
     }
     writeJson(USERS_PATH, users);
     res.json({ success: true, subscriptions: user.subscriptions });
+});
+
+// Загрузка аватара пользователя (dataURL -> файл на диске)
+app.post('/api/user/avatar', (req, res) => {
+  const user = getUserFromRequest(req);
+  if (!user) return res.status(401).json({ error: 'Not authorized' });
+  const { dataUrl } = req.body || {};
+  if (!dataUrl || typeof dataUrl !== 'string' || !dataUrl.startsWith('data:image/')) {
+    return res.status(400).json({ error: 'Invalid image' });
+  }
+  // data:image/<ext>;base64,<data>
+  const match = dataUrl.match(/^data:image\/(png|jpeg|jpg|webp);base64,(.+)$/);
+  if (!match) return res.status(400).json({ error: 'Unsupported image format' });
+  let ext = match[1];
+  if (ext === 'jpeg') ext = 'jpg';
+  const base64 = match[2];
+  const buffer = Buffer.from(base64, 'base64');
+
+  // Ensure uploads dir exists
+  const publicDir = path.join(__dirname, 'public');
+  const uploadsDir = path.join(publicDir, 'uploads');
+  if (!fs.existsSync(publicDir)) fs.mkdirSync(publicDir);
+  if (!fs.existsSync(uploadsDir)) fs.mkdirSync(uploadsDir);
+
+  const fileName = `${user.id}_${Date.now()}.${ext}`;
+  const filePath = path.join(uploadsDir, fileName);
+  try {
+    fs.writeFileSync(filePath, buffer);
+  } catch (e) {
+    return res.status(500).json({ error: 'Failed to save image' });
+  }
+
+  // Update user record
+  const users = readJson(USERS_PATH);
+  const u = users.find(u => String(u.id) === String(user.id));
+  if (!u) return res.status(404).json({ error: 'User not found' });
+  // Store absolute URL to ensure it loads from API host
+  u.avatar = `http://localhost:${PORT}/uploads/${fileName}`;
+  writeJson(USERS_PATH, users);
+  return res.json({ success: true, avatar: u.avatar });
 });
 
 // Получить пользователя по req (cookie user_id)
