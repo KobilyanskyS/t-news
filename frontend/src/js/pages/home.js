@@ -13,7 +13,7 @@ function enrichPostsWithAuthors(posts, users) {
     return {
       ...p,
       author_name: author?.name || 'Пользователь',
-      author_avatar: author?.avatar || '/src/images/Profile.svg'
+      author_avatar: author?.avatar || '/Profile.svg'
     };
   });
 }

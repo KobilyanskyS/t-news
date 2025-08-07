@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         a.className = 'user';
         a.href = `/profile.html?userId=${encodeURIComponent(u.id)}`;
         a.innerHTML = `
-          <div class="user__img"><img src="${u.avatar || '/src/images/Profile.svg'}" alt=""></div>
+          <div class="user__img"><img src="${u.avatar || '/Profile.svg'}" alt=""></div>
           <h3 class="user__name">${u.name || 'Пользователь'}</h3>
         `;
         usersBlock.appendChild(a);

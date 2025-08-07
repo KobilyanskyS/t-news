@@ -10,8 +10,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   if (user) {
     headerLinks.innerHTML = `
-      <a href="#" class="header_links__link" id="logout-link"><p>Выйти </p><img width="24px" src="/src/images/arrow-in-right.svg" alt=""></a>
-      <a href="/profile.html?userId=${encodeURIComponent(user.id)}" class="header_links__link"><img width="24px" src="/src/images/Profile.svg" alt=""></a>
+      <a href="#" class="header_links__link" id="logout-link"><p>Выйти </p><img width="24px" src="/arrow-in-right.svg" alt=""></a>
+      <a href="/profile.html?userId=${encodeURIComponent(user.id)}" class="header_links__link"><img width="24px" src="/Profile.svg" alt=""></a>
     `;
     document.getElementById('logout-link').addEventListener('click', async (e) => {
       e.preventDefault();
@@ -20,8 +20,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
   } else {
     headerLinks.innerHTML = `
-      <a href="/register.html" id="reg" class="header_links__link"><p>Зарегистрироваться </p><img width="24px" src="/src/images/arrow-in-right.svg" alt=""></a>
-      <a href="/login.html" class="header_links__link"><p>Войти </p><img width="24px" src="/src/images/arrow-in-right.svg" alt=""></a>
+      <a href="/register.html" id="reg" class="header_links__link"><p>Зарегистрироваться </p><img width="24px" src="/arrow-in-right.svg" alt=""></a>
+      <a href="/login.html" class="header_links__link"><p>Войти </p><img width="24px" src="/arrow-in-right.svg" alt=""></a>
     `;
   }
 });

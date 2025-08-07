@@ -12,7 +12,6 @@ export default defineConfig({
         register: resolve(__dirname, 'register.html'),
         profile: resolve(__dirname, 'profile.html'),
         search: resolve(__dirname, 'search.html'),
-        comments: resolve(__dirname, 'comments.html')
       }
     }
   },

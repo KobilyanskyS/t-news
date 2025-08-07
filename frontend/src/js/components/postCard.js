@@ -10,7 +10,7 @@ function createElement(tag, className, html) {
 
 function renderHeader(post) {
   const header = createElement('div', 'card__header');
-  const imgDiv = createElement('div', 'card__img', `<img src="${post.author_avatar || '/src/images/Profile.svg'}" alt="">`);
+  const imgDiv = createElement('div', 'card__img', `<img src="${post.author_avatar || '/Profile.svg'}" alt="">`);
   const nameLink = createElement('a', 'card__name');
   nameLink.textContent = post.author_name || 'Пользователь';
   nameLink.href = `/profile.html?userId=${encodeURIComponent(post.author_id)}`;
@@ -23,7 +23,7 @@ function renderFooter(post, currentUser, onLike) {
   const likesArr = Array.isArray(post.likes) ? post.likes : [];
   const isLiked = currentUser && likesArr.some(id => String(id) === String(currentUser.id));
   const likeBtn = createElement('button', `card__button${isLiked ? ' card__button__like' : ''}`, `
-    <img src="/src/images/Heart.svg" alt="" class="card__button__img">
+    <img src="/Heart.svg" alt="" class="card__button__img">
     <span class="card__button__likes-counter">${likesArr.length}</span>
   `);
   likeBtn.addEventListener('click', async () => {
@@ -73,7 +73,7 @@ function renderCommentsBlock(post, currentUser, commentsBtn) {
         return {
           ...comment,
           user_name: comment.user_name || user?.name || 'Пользователь',
-          user_avatar: comment.user_avatar || user?.avatar || '/src/images/Profile.svg'
+          user_avatar: comment.user_avatar || user?.avatar || '/Profile.svg'
         };
       });
     } catch {
@@ -88,7 +88,7 @@ function renderCommentsBlock(post, currentUser, commentsBtn) {
     for (const comment of enrichedComments) {
       const commentCard = createElement('div', 'comment-card');
       const header = createElement('div', 'card__header');
-      const cImgDiv = createElement('div', 'card__img', `<img src="${comment.user_avatar || '/src/images/Profile.svg'}" alt="">`);
+      const cImgDiv = createElement('div', 'card__img', `<img src="${comment.user_avatar || '/Profile.svg'}" alt="">`);
       const cNameLink = createElement('a', 'card__name');
       cNameLink.textContent = comment.user_name || 'Пользователь';
       cNameLink.href = `/profile.html?userId=${encodeURIComponent(comment.userId)}`;
@@ -96,7 +96,7 @@ function renderCommentsBlock(post, currentUser, commentsBtn) {
       const cPost = createElement('div', 'card__post');
       cPost.innerHTML = `<p>${comment.content}</p>`;
       if (currentUser && Number(currentUser.id) === Number(comment.userId)) {
-        const deleteBtn = createElement('button', 'comment-delete-btn', '<img src="/src/images/delete.svg" alt="Удалить" style="width:16px;height:16px;vertical-align:middle;">');
+        const deleteBtn = createElement('button', 'comment-delete-btn', '<img src="/delete.svg" alt="Удалить" style="width:16px;height:16px;vertical-align:middle;">');
         deleteBtn.title = 'Удалить комментарий';
         Object.assign(deleteBtn.style, { marginLeft: '8px', background: 'none', border: 'none', cursor: 'pointer', color: 'gray' });
         deleteBtn.addEventListener('click', async (e) => {
@@ -139,7 +139,7 @@ function renderCommentsBlock(post, currentUser, commentsBtn) {
           if (!avatarUrl) {
             const users = await getUsers();
             const me = users.find(u => String(u.id) === String(currentUser.id));
-            avatarUrl = (me && me.avatar) ? me.avatar : '/src/images/Profile.svg';
+            avatarUrl = (me && me.avatar) ? me.avatar : '/Profile.svg';
             if (me && me.name) userName = me.name;
           }
 
@@ -153,7 +153,7 @@ function renderCommentsBlock(post, currentUser, commentsBtn) {
           const cPost = createElement('div', 'card__post');
           cPost.innerHTML = `<p>${content}</p>`;
 
-          const deleteBtn = createElement('button', 'comment-delete-btn', '<img src="/src/images/delete.svg" alt="Удалить" style="width:16px;height:16px;vertical-align:middle;">');
+          const deleteBtn = createElement('button', 'comment-delete-btn', '<img src="/delete.svg" alt="Удалить" style="width:16px;height:16px;vertical-align:middle;">');
           deleteBtn.title = 'Удалить комментарий';
           Object.assign(deleteBtn.style, { marginLeft: '8px', background: 'none', border: 'none', cursor: 'pointer', color: 'gray' });
           const commentId = result.commentId || result.commentID || result.id;

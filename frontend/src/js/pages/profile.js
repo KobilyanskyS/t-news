@@ -24,18 +24,18 @@ function renderProfileBlock(user, isCurrentUser) {
     <div class="profile">
       <div class="profile__image-block">
         <div class="profile__avatar">
-          <img src="${user.avatar || '/src/images/Profile.svg'}" alt="" class="profile__avatar-image">
+          <img src="${user.avatar || '/Profile.svg'}" alt="" class="profile__avatar-image">
         </div>
         ${isCurrentUser ? '<button class="profile__change_avatar_btn">Изменить фото</button><input type="file" accept="image/*" id="profile-avatar-input" style="display:none">' : ''}
       </div>
       <div class="profile__info-block">
         <div class="profile__name-block">
           <h1 class="profile__name">${user.name || 'Пользователь'}</h1>
-          ${isCurrentUser ? '<button class="profile__edit-name-btn" title="Редактировать имя" style="background:none;border:none;padding:0;cursor:pointer;"><img src="/src/images/edit.svg" alt="" class="profile__edit-name" width="24px"></button>' : ''}
+          ${isCurrentUser ? '<button class="profile__edit-name-btn" title="Редактировать имя" style="background:none;border:none;padding:0;cursor:pointer;"><img src="/edit.svg" alt="" class="profile__edit-name" width="24px"></button>' : ''}
         </div>
         <div class="profile__about-block">
           <p class="profile__about">${user.about ? 'Обо мне: ' + user.about : ''}</p>
-          ${isCurrentUser ? '<button class="profile__edit-about-btn" title="Редактировать обо мне" style="background:none;border:none;padding:0;cursor:pointer;"><img src="/src/images/edit.svg" alt="" class="profile__edit-about" width="16px"></button>' : ''}
+          ${isCurrentUser ? '<button class="profile__edit-about-btn" title="Редактировать обо мне" style="background:none;border:none;padding:0;cursor:pointer;"><img src="/edit.svg" alt="" class="profile__edit-about" width="16px"></button>' : ''}
         </div>
       </div>
       <div class="profile__subscribe-block">
@@ -95,7 +95,7 @@ function initInlineNameEdit() {
     const input = el('input', 'profile__name-input');
     Object.assign(input, { type: 'text', value: oldName });
     Object.assign(input.style, { fontSize: '2rem', marginRight: '8px', padding: '4px 8px', border: '1px solid #ccc', borderRadius: '6px' });
-    const saveBtn = el('button', null, '<img src="/src/images/ok.svg" alt="Сохранить" width="24px">');
+    const saveBtn = el('button', null, '<img src="/ok.svg" alt="Сохранить" width="24px">');
     saveBtn.title = 'Сохранить'; Object.assign(saveBtn.style, { background: 'none', border: 'none', cursor: 'pointer' });
     nameBlock.insertBefore(input, h1); nameBlock.insertBefore(saveBtn, h1); input.focus();
     const finish = async (cancel) => {
@@ -142,7 +142,7 @@ function initInlineAboutEdit() {
       flex: '1 1 auto',
       display: 'block'
     });
-    const saveBtn = el('button', null, '<img src="/src/images/ok.svg" alt="Сохранить" width="16px">');
+    const saveBtn = el('button', null, '<img src="/ok.svg" alt="Сохранить" width="16px">');
     saveBtn.title = 'Сохранить'; Object.assign(saveBtn.style, { background: 'none', border: 'none', cursor: 'pointer' });
     aboutBlock.insertBefore(textarea, p); aboutBlock.insertBefore(saveBtn, p); textarea.focus();
     const finish = async (cancel) => {
@@ -227,7 +227,7 @@ async function renderProfilePage() {
     for (const post of userPosts) {
       const card = createPostCardComponent(post, currentUser);
       if (isCurrentUser) {
-        const deleteBtn = el('button', 'post-delete-btn', '<img src="/src/images/delete.svg" alt="Удалить" style="width:16px;height:16px;vertical-align:middle;">');
+        const deleteBtn = el('button', 'post-delete-btn', '<img src="/delete.svg" alt="Удалить" style="width:16px;height:16px;vertical-align:middle;">');
         Object.assign(deleteBtn.style, { marginLeft: '8px', background: 'none', border: 'none', cursor: 'pointer', color: 'gray' });
         deleteBtn.title = 'Удалить пост';
         deleteBtn.addEventListener('click', async (e) => {
@@ -255,7 +255,7 @@ async function renderProfilePage() {
           const card = createPostCardComponent(newPost, user);
           const footer = card.querySelector('.card__footer');
           if (footer) {
-            const deleteBtn = el('button', 'post-delete-btn', '<img src="/src/images/delete.svg" alt="Удалить" style="width:16px;height:16px;vertical-align:middle;">');
+            const deleteBtn = el('button', 'post-delete-btn', '<img src="/delete.svg" alt="Удалить" style="width:16px;height:16px;vertical-align:middle;">');
             Object.assign(deleteBtn.style, { marginLeft: '8px', background: 'none', border: 'none', cursor: 'pointer', color: 'gray' });
             deleteBtn.addEventListener('click', async (e) => {
               e.preventDefault(); deleteBtn.disabled = true;
