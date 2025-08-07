@@ -33,13 +33,6 @@ async function loadInitial() {
   allPosts = posts;
   nextIndex = 0;
   await renderMore(user);
-
-  if (!user) {
-    const notice = document.createElement('div');
-    Object.assign(notice.style, { marginTop: '16px', color: 'gray', fontSize: '0.95rem', textAlign: 'center' });
-    notice.textContent = 'Чтобы ставить лайки и писать комментарии, пожалуйста, войдите или зарегистрируйтесь.';
-    cards.parentElement.insertBefore(notice, cards);
-  }
 }
 
 // Загрузка дополнительных постов
