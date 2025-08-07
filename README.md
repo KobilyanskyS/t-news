@@ -9,7 +9,47 @@
 - CSS/LESS
 - Vite
 
-### Установка
+### Запуск (при помощи Docker)
+
+1. **Клонировать репозиторий**
+```bash
+git clone https://github.com/KobilyanskyS/t-news.git
+cd T-News
+```
+
+2. **Запустить сервисы**
+```bash
+docker compose up -d --build
+```
+   - Будут собраны 2 контейнера: `server` (порт 3000) и `frontend` (порт 5173)
+   - Автоматически будут установлены зависимости, фронтенд автоматически соберётся при помощи Vite и также автоматически всё будет запущено
+
+3. **Открыть приложение**
+   - http://localhost:5173
+
+4. **Проверить статус и логи**
+```bash
+docker compose ps
+docker compose logs -f server
+docker compose logs -f frontend
+```
+
+5. **Остановить и удалить контейнеры**
+```bash
+docker compose down
+```
+
+6. **Пересобрать после изменений**
+```bash
+docker compose build --no-cache
+docker compose up -d
+```
+
+Примечания:
+- В `docker-compose.yml` файлы `users.json`, `posts.json` и папка `public/uploads` проброшены в контейнер сервера. Изменения в них локально сразу видны внутри контейнера без пересборки.
+- Переменная `VITE_BACKEND_URL` для фронтенда задаётся автоматически (`http://server:3000`) внутри docker-compose. Снаружи сервер доступен на `http://localhost:3000`.
+
+### Запуск (вручную)
 
 1. **Клонировать репозиторий**
 ```bash
@@ -28,16 +68,14 @@ cd frontend
 npm install
 ```
 
-### Запуск
-
-1. **Запуск сервера**
+4. **Запуск сервера**
 ```bash
 # В корневой папке проекта
 npm run start
 ```
 Сервер запустится на `http://localhost:3000`
 
-2. **Запустите фронтенд**
+5. **Запустите фронтенд**
 ```bash
 # В папке frontend
 npm run dev
@@ -93,8 +131,11 @@ T-News/
 │   ├── search.html          # Страница поиска
 │   ├── package.json         # Зависимости фронтенда
 │   ├── vite.config.js       # Конфигурация Vite
+│   ├── Dockerfile           # Dockerfile для фронтенда
 │   └── .gitignore           # Исключения Git
 ├── server.js                # Сервер Express
+├── docker-compose.yml       # Оркестрация Docker (server + frontend)
+├── Dockerfile.server        # Dockerfile для сервера
 ├── posts.json               # Данные постов
 ├── users.json               # Данные пользователей
 ├── package.json             # Зависимости сервера
